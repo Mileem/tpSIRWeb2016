@@ -1,14 +1,20 @@
 // Implémenter ici les fonctions paint à ajouter dans chacune des classes du modèle.
 Rectangle.prototype.paint = function(ctx) {
-//TODO Manager color
+    // Manager color
+    ctx.lineWidth = this.getLineWidth();
+    ctx.strokeStyle = this.getColor();
+    
     ctx.rect(this.getInitX(), this.getInitY(), this.getFinalX(), this.getFinalY());
     ctx.stroke();
 
 };
 
 Line.prototype.paint = function(ctx) {
-//TODO Manager color
+    // Manager color
     ctx.beginPath();
+    ctx.lineWidth = this.getLineWidth();
+    ctx.strokeStyle = this.getColor();
+    
     ctx.moveTo(this.getInitX(), this.getInitY());
     ctx.lineTo(this.getFinalX(), this.getFinalY());
     ctx.stroke();

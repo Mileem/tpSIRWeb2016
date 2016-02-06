@@ -4,12 +4,22 @@ function Drawing() {
     this.forme_list = new Array();
 }
 
-function Forme(size, color) {
-    this.size = size;
+function Forme(line_width, color) {
+    this.line_width = line_width;
     this.color = color;
+  /*  this.getLineWidth = function() {
+        console.log(this.line_width);
+        return this.line_width;
+    };
+    
+    this.getColor = function() {
+        console.log(this.color);
+        return this.color;
+    }*/
 }
 
-function Rectangle(x_start, y_start, width, height) {
+function Rectangle(x_start, y_start, width, height, line_width, color) {
+    Forme.call(this, line_width, color);
     this.x_start = x_start;
     this.y_start = y_start;
     this.x_end = x_start + width;
@@ -18,7 +28,8 @@ function Rectangle(x_start, y_start, width, height) {
 
 Rectangle.prototype = new Forme;
 
-function Line(x_start, y_start, x_end, y_end) {
+function Line(x_start, y_start, x_end, y_end, line_width, color) {
+    Forme.call(this, line_width, color);
     this.x_start = x_start;
     this.y_start = y_start;
     this.x_end = x_end;
@@ -31,3 +42,5 @@ Forme.prototype.getInitX = function() {return this.x_start};
 Forme.prototype.getFinalX = function() {return this.x_end};
 Forme.prototype.getInitY = function() {return this.y_start};
 Forme.prototype.getFinalY = function() {return this.y_end};
+Forme.prototype.getLineWidth = function() {return this.line_width};
+Forme.prototype.getColor = function() {return this.color};

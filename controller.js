@@ -25,6 +25,7 @@ function Pencil(ctx, drawing, canvas) {
 	// Implémentez ici les 3 fonctions onInteractionStart, onInteractionUpdate et onInteractionEnd
     this.onInteractionStart = function(dnd) {
         this.chooseEditingMode();
+        this.currLineWidth = document.getElementById('spinnerWidth').value;
     }.bind(this);
     
     this.onInteractionUpdate = function(dnd){

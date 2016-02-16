@@ -26,6 +26,7 @@ function Pencil(ctx, drawing, canvas) {
     this.onInteractionStart = function(dnd) {
         this.chooseEditingMode();
         this.currLineWidth = document.getElementById('spinnerWidth').value;
+        this.currColour = document.getElementById('colour').value;
     }.bind(this);
     
     this.onInteractionUpdate = function(dnd){

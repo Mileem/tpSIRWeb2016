@@ -13,8 +13,8 @@ function Rectangle(x_start, y_start, width, height, size, color) {
     Forme.call(this, size, color);
     this.x_start = x_start;
     this.y_start = y_start;
-    this.x_end = x_start + width;
-    this.y_end = y_start + height;
+    this.x_end =  width;
+    this.y_end =  height;
 }
 
 Rectangle.prototype = new Forme();

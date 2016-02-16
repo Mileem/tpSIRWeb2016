@@ -2,7 +2,7 @@
 var editingMode = { rect: 0, line: 1 };
 
 function Pencil(ctx, drawing, canvas) {
-	this.currEditingMode = editingMode.line;
+	this.currEditingMode = editingMode.rect;
 	this.currLineWidth = 5;
 	this.currColour = '#000000';
 	this.currentShape = 0;
@@ -24,7 +24,9 @@ function Pencil(ctx, drawing, canvas) {
         this.drawing.paint(ctx, canvas);
         switch(this.currEditingMode){
           case editingMode.rect: {
-            form = new Rectangle(dnd.x_start, dnd.y_start, dnd.x_end, dnd.y_end, this.currLineWidth, this.currColour);  
+            var width = dnd.x_end - dnd.x_start;
+            var height = dnd.y_end - dnd.y_start;  
+            form = new Rectangle(dnd.x_start, dnd.y_start, width, height, this.currLineWidth, this.currColour);  
             break;
           }
           case editingMode.line: {
@@ -40,7 +42,9 @@ function Pencil(ctx, drawing, canvas) {
         var form = null;
         switch(this.currEditingMode){
           case editingMode.rect: {
-              form = new Rectangle(dnd.x_start, dnd.y_start, dnd.x_end, dnd.y_end, this.currLineWidth, this.currColour); 
+            var width = dnd.x_end - dnd.x_start;
+            var height = dnd.y_end - dnd.y_start;  
+            form = new Rectangle(dnd.x_start, dnd.y_start, width, height, this.currLineWidth, this.currColour);  
             break;
           }
           case editingMode.line: {

@@ -4,16 +4,19 @@
 function DnD(canvas, interactor) {
 	// Définir ici les attributs de la 'classe'
     this.x_start = 0 , this.y_start = 0 , this.x_end = 0 , this.y_end = 0;
+    this.interactor = interactor;
     var mouse_clicked = false;
 
 	// Developper les 3 fonctions gérant les événements
     this.clickEvent = function (evt) { //Pression sur la souris
+        console.log(this.interactor);
         if(!mouse_clicked) {
             mouse_clicked = true;
             var result = getMousePosition(canvas, evt);
             this.x_start = result.x;
             this.y_start = result.y;
             console.log("Départ : " + this.x_start +' '+ this.y_start);
+            this.interactor.onInteractionStart(this);
         }  
     }.bind(this);
     
@@ -23,6 +26,7 @@ function DnD(canvas, interactor) {
             this.x_end = result.x;
             this.y_end = result.y;
             console.log("Mouvement : " + this.x_end +' '+ this.y_end);
+            this.interactor.onInteractionUpdate(this);
         } 
     }.bind(this);
     
@@ -32,6 +36,7 @@ function DnD(canvas, interactor) {
             this.x_end = result.x;
             this.y_end = result.y;
             console.log("Fin : " + this.x_end +' '+ this.y_end);
+            this.interactor.onInteractionEnd(this);
         }
         mouse_clicked = false;
     }.bind(this);

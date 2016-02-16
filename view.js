@@ -3,6 +3,7 @@ Rectangle.prototype.paint = function(ctx) {
 //TODO Manager color
     ctx.strokeStyle = this.color;
     ctx.lineWidth = this.size;
+    ctx.beginPath();
     ctx.rect(this.getInitX(), this.getInitY(), this.getFinalX(), this.getFinalY());
     ctx.stroke();
 

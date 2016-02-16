@@ -11,12 +11,20 @@ function Pencil(ctx, drawing, canvas) {
     this.ctx = ctx;
     this.drawing= drawing;
     this.canvas = canvas;
+    
+    this.chooseEditingMode = function() {
+        if(document.getElementById('butRect').checked) {
+            this.currEditingMode = editingMode.rect;
+        } else if (document.getElementById('butLine').checked){
+            this.currEditingMode = editingMode.line;        
+        }
+    }.bind(this);
 
 	new DnD(canvas, this);
 
 	// Implémentez ici les 3 fonctions onInteractionStart, onInteractionUpdate et onInteractionEnd
     this.onInteractionStart = function(dnd) {
-        
+        this.chooseEditingMode();
     }.bind(this);
     
     this.onInteractionUpdate = function(dnd){

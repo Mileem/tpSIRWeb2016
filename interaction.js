@@ -2,44 +2,52 @@
 // L'interacteur viendra dans un second temps donc ne vous en souciez pas au départ.
 function DnD(canvas, interactor) {
 	// Définir ici les attributs de la 'classe'
-    var x_start = 0 , y_start = 0 , x_end = 0 , y_end = 0;
+    this.x_start = 0 , this.y_start = 0 , this.x_end = 0 , this.y_end = 0;
     var mouse_clicked = false;
-
+    this.interactor = interactor;
+    console.log(this.interactor);
+    
 	// Developper les 3 fonctions gérant les événements
-    function clickEvent(evt) { //Pression sur la souris
+    this.clickEvent = function(evt) { //Pression sur la souris
+         console.log(this.interactor);
         if(!mouse_clicked) {
             mouse_clicked = true;
             var result = getMousePosition(canvas, evt);
-            x_start = result.x;
-            y_start = result.y;
-            console.log("Départ : " + x_start +' '+ y_start);
+            this.x_start = result.x;
+            this.y_start = result.y;
+            console.log("Départ : " + this.x_start +' '+ this.y_start);
+           
+            this.interactor.onInteractionStart(this);
         }  
-    }
+    }.bind(this);
     
-    function moveEvent(evt) { //Déplacement de la souris
+    this.moveEvent = function(evt) { //Déplacement de la souris
         if(mouse_clicked) {
             var result = getMousePosition(canvas, evt);
-            x_end = result.x;
-            y_end = result.y;
-            console.log("Mouvement : " + x_end +' '+ y_end);
+            this.x_end = result.x;
+            this.y_end = result.y;
+            console.log("Mouvement : " + this.x_end +' '+ this.y_end);
+            this.interactor.onInteractionUpdate(this);
         } 
-    }
+    }.bind(this);
     
-    function unclickEvent(evt) { //Relâchement de la souris
+    this.unclickEvent = function(evt) { //Relâchement de la souris
         if(mouse_clicked) {
             var result = getMousePosition(canvas, evt);
-            x_end = result.x;
-            y_end = result.y;
-            console.log("Fin : " + x_end +' '+ y_end);
+            this.x_end = result.x;
+            this.y_end = result.y;
+            console.log("Fin : " + this.x_end +' '+ this.y_end);
+            this.interactor.onInteractionEnd(this);
         }
         mouse_clicked = false;
-    }
+    }.bind(this);
 
 	// Associer les fonctions précédentes aux évènements du canvas.
-    canvas.addEventListener('mousedown', clickEvent, false);
-    canvas.addEventListener('mousemove', moveEvent, false);
-    canvas.addEventListener('mouseup', unclickEvent, false);
+    canvas.addEventListener('mousedown', this.clickEvent, false);
+    canvas.addEventListener('mousemove', this.moveEvent, false);
+    canvas.addEventListener('mouseup', this.unclickEvent, false);
 };
+
 
 
 // Place le point de l'événement evt relativement à la position du canvas.

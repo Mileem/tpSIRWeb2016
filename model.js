@@ -7,15 +7,6 @@ function Drawing() {
 function Forme(line_width, color) {
     this.line_width = line_width;
     this.color = color;
-  /*  this.getLineWidth = function() {
-        console.log(this.line_width);
-        return this.line_width;
-    };
-    
-    this.getColor = function() {
-        console.log(this.color);
-        return this.color;
-    }*/
 }
 
 function Rectangle(x_start, y_start, width, height, line_width, color) {
@@ -44,3 +35,10 @@ Forme.prototype.getInitY = function() {return this.y_start};
 Forme.prototype.getFinalY = function() {return this.y_end};
 Forme.prototype.getLineWidth = function() {return this.line_width};
 Forme.prototype.getColor = function() {return this.color};
+
+Drawing.prototype.addForm = function(form) {this.forme_list.push(form);};
+Drawing.prototype.getForms = function() { return this.forme_list};
+Drawing.prototype.paint = function(ctx, canvas) {
+    new DnD(canvas);
+    this.forme_list.forEach(function(form){form.paint(ctx)});
+};

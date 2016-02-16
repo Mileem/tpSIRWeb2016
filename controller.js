@@ -21,6 +21,7 @@ function Pencil(ctx, drawing, canvas) {
     
     this.onInteractionUpdate = function(dnd){
         var form = null
+        this.drawing.paint(ctx, canvas);
         switch(this.currEditingMode){
           case editingMode.rect: {
             form = new Rectangle(dnd.x_start, dnd.y_start, dnd.x_end, dnd.y_end, this.currLineWidth, this.currColour);  

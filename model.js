@@ -31,3 +31,6 @@ Forme.prototype.getInitX = function() {return this.x_start};
 Forme.prototype.getFinalX = function() {return this.x_end};
 Forme.prototype.getInitY = function() {return this.y_start};
 Forme.prototype.getFinalY = function() {return this.y_end};
+
+Drawing.prototype.addForm = function(form) {this.forme_list.push(form)};
+Drawing.prototype.getForms = function() { return this.forme_list};

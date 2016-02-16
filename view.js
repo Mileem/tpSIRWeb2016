@@ -20,6 +20,17 @@ Line.prototype.paint = function(ctx) {
 
 };
 
+Circle.prototype.paint = function(ctx) {
+    ctx.strokeStyle = this.color;
+    ctx.lineWidth = this.size;
+    ctx.beginPath();
+    var xCenter = Math.abs(this.getInitX() + ((this.getFinalX() - this.getInitX())/2));
+    var yCenter = Math.abs(this.getInitY() + ((this.getFinalY() - this.getInitY())/2));
+    var rayon = (this.getFinalX() - this.getInitX())/2;
+    ctx.arc(xCenter, yCenter, rayon, 0, 2 * Math.PI);
+    ctx.stroke();
+};
+
 
 Drawing.prototype.paint = function(ctx) {
     ctx.fillStyle = '#F0F0F0'; // set canvas' background color

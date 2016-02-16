@@ -1,5 +1,5 @@
 
-var editingMode = { rect: 0, line: 1 };
+var editingMode = { rect: 0, line: 1, circle: 3 };
 
 function Pencil(ctx, drawing, canvas) {
 	this.currEditingMode = editingMode.rect;
@@ -17,6 +17,8 @@ function Pencil(ctx, drawing, canvas) {
             this.currEditingMode = editingMode.rect;
         } else if (document.getElementById('butLine').checked){
             this.currEditingMode = editingMode.line;        
+        } else if (document.getElementById('butCircle').checked) {
+            this.currEditingMode = editingMode.circle;
         }
     }.bind(this);
 
@@ -43,7 +45,10 @@ function Pencil(ctx, drawing, canvas) {
             form = new Line(dnd.x_start, dnd.y_start, dnd.x_end, dnd.y_end, this.currLineWidth, this.currColour);  
             break;
           }
-           
+           case editingMode.circle: {
+            form = new Circle(dnd.x_start, dnd.y_start, dnd.x_end, dnd.y_end, this.currLineWidth, this.currColour);  
+            break;
+          }
         }  
          form.paint(this.ctx);  
     }.bind(this);
@@ -59,6 +64,10 @@ function Pencil(ctx, drawing, canvas) {
           }
           case editingMode.line: {
               form = new Line(dnd.x_start, dnd.y_start, dnd.x_end, dnd.y_end, this.currLineWidth, this.currColour);
+            break;
+          }
+          case editingMode.circle: {
+            form = new Circle(dnd.x_start, dnd.y_start, dnd.x_end, dnd.y_end, this.currLineWidth, this.currColour);  
             break;
           }
         } 

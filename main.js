@@ -16,6 +16,11 @@ ctx.fillRect(0, 0, canvas.width, canvas.height);  // now fill the canvas
 //rec.paint(ctx);
 //var ligne = new Line(10, 20, 50, 100, 5, '#00CCC0');
 //ligne.paint(ctx);
+//var circle = new Circle(100, 100, 150, 150, 4, '#00CCC0');
+//circle.paint(ctx);
+
+//ctx.arc(100, 100, 100, 0, 2 * Math.PI);
+//ctx.stroke();
 // tester également Dessin.
 ////
 //var draw = new Drawing();

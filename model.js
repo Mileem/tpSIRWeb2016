@@ -29,6 +29,16 @@ function Line(x_start, y_start, x_end, y_end, size, color) {
 
 Line.prototype = new Forme();
 
+function Circle(x_start, y_start, x_end, y_end, size, color) {
+    Forme.call(this, size, color);
+    this.x_start = x_start;
+    this.y_start = y_start;
+    this.x_end = x_end;
+    this.y_end = y_end;
+}
+
+Circle.prototype = new Forme();
+
 Forme.prototype.getInitX = function() {return this.x_start};
 Forme.prototype.getFinalX = function() {return this.x_end};
 Forme.prototype.getInitY = function() {return this.y_start};
